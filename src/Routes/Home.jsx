@@ -7,16 +7,9 @@ import { ContextGlobal } from '../Components/utils/global.context';
 
 const Home = ({state}) => {
  
- // const[usernames,setUsernames]=useState([]);
- // const url ="https://jsonplaceholder.typicode.com/users";
- // useEffect(() => {
-  //  axios(url).then((res) => {
- 
-   // setUsernames(res.data);
- // });
-//}, []);
+  const themeClass = state.theme === 'light' ? 'light-home' : 'dark-home';
   return (
-    <main className="" >
+    <main className={`home-container ${themeClass}`} >
       <h1>Home</h1>
       <div className='card-grid'>
         {/* Aqui deberias renderizar las cards */}

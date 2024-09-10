@@ -1,29 +1,25 @@
-import React from 'react';
+import React, { useContext } from 'react';
 
 import { Link } from 'react-router-dom'
+import { ContextGlobal } from './utils/global.context';
 
 const Card = ({ name, username, id }) => {
 
+  const { state, addFavorite, removeFavorite } = useContext(ContextGlobal);
 
-
-  const getFavorites = () => {
-    return JSON.parse(localStorage.getItem('favs')) || [];
-  };
-
+  const isFavorite = state.favorites.some((fav) => fav.id === id);
 
 
   const addFav = ()=>{
     // Aqui iria la logica para agregar la Card en el localStorage
   
-    const favs = getFavorites();
-    if (!favs.some((fav) => fav.id === id)) { 
-    const newFav = { id, name, username };
-    const updatedFavs = [...favs, newFav];
-    localStorage.setItem('favs', JSON.stringify(updatedFavs));
-
-    alert('Añadido a favoritos');
+    if (isFavorite) {
+      removeFavorite({ id, name, username });
+    alert('Dentista removido de favoritos');
+    
   } else {
-    alert('Este dentista ya está en favoritos');
+    addFavorite({ id, name, username });
+    alert('Añadido a favoritos');
   }
   }
 
@@ -36,7 +32,7 @@ const Card = ({ name, username, id }) => {
      
        <Link to={"/dentista/"+id} ><h4>Detalle del dentista</h4></Link>
         {/* Ademas deberan integrar la logica para guardar cada Card en el localStorage */}
-        <button onClick={addFav} className="favButton">Add fav</button>
+        <button onClick={addFav} className="favButton"> {isFavorite ? 'Quitar de Favoritos' : 'Agregar a Favoritos'}</button>
     </div>
   );
 };

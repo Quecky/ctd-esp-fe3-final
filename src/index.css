@@ -120,3 +120,36 @@ tr:nth-child(even) {
 .dark > a {
   color: white;
 }
+
+/*
+.light-home, .light-favs, .light-detail, .light-contact {
+  background-color: #f9f9f9;
+  color: #000;
+}
+
+ Estilos generales para el tema oscuro 
+.dark-home, .dark-favs, .dark-detail, .dark-contact {
+  background-color: #121212;
+  color: #fff;
+}
+
+.light-home .card, .light-favs .card, .light-detail .card, .light-contact .card {
+  background-color: #fff;
+  color: #000;
+}
+
+.dark-home .card, .dark-favs .card, .dark-detail .card, .dark-contact .card {
+  background-color: #333;
+  color: #fff;
+}*/
+
+button {
+  background-color: transparent;
+  border: 1px solid #ccc;
+  padding: 10px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: rgba(136, 136, 136, 0.2);
+}

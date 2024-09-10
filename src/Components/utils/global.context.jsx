@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React, { createContext, useReducer, useEffect, useMemo } from 'react';
 
-export const initialState = {theme: "", data: []}
+export const initialState = {theme: "", data: [], favorites: [] }
 
 const globalReducer = (state, action) => {
   switch (action.type) {
@@ -9,8 +9,25 @@ const globalReducer = (state, action) => {
       return { ...state, data: action.payload };
     case 'TOGGLE_THEME':
       return { ...state, theme: state.theme === 'light' ? 'dark' : 'light' };
-    default:
-      return state;
+    case 'ADD_FAVORITE': {
+        const updatedFavorites = [...state.favorites, action.payload];
+        // Guardar en localStorage
+        localStorage.setItem('favorites', JSON.stringify(updatedFavorites));
+        return { ...state, favorites: updatedFavorites };
+      }
+    case 'REMOVE_FAVORITE': {
+        const updatedFavorites = state.favorites.filter(
+          (item) => item.id !== action.payload.id
+        );
+        localStorage.setItem('favorites', JSON.stringify(updatedFavorites));
+        return { ...state, favorites: updatedFavorites };
+      }
+    case 'LOAD_FAVORITES': {
+        const savedFavorites = JSON.parse(localStorage.getItem('favorites')) || [];
+        return { ...state, favorites: savedFavorites };
+      }
+      default:
+        return state;
   }
 };
 
@@ -32,10 +49,23 @@ export const ContextProvider = ({ children }) => {
     dispatch({ type: 'TOGGLE_THEME' });
   };
 
-  const value = useMemo(() => ({
-    state,
-    toggleTheme,
-  }), [state]);
+  const addFavorite = (dentist) => {
+    dispatch({ type: 'ADD_FAVORITE', payload: dentist });
+  };
+
+  const removeFavorite = (dentist) => {
+    dispatch({ type: 'REMOVE_FAVORITE', payload: dentist });
+  };
+
+  const value = useMemo(
+    () => ({
+      state,
+      toggleTheme,
+      addFavorite,
+      removeFavorite,
+    }),
+    [state]
+  );
   return (
     <ContextGlobal.Provider value={value}>
       {children}

@@ -25,9 +25,9 @@ function App() {
         <Navbar toggleTheme={toggleTheme} />
             <Routes>
               <Route path={routes.home} element={<Home state={state}/>}/>
-              <Route path="/dentista/:id" element={<Detail/>}/>
-              <Route path={routes.contact} element={<Contact/>}/>
-              <Route path={routes.favs} element={<Favs/>}/>
+              <Route path="/dentista/:id" element={<Detail state={state}/>}/>
+              <Route path={routes.contact} element={<Contact state={state}/>}/>
+              <Route path={routes.favs} element={<Favs state={state}/>}/>
               <Route path={routes.notFound} element={<h1>Error 404  - Page not Found </h1>}/>
             </Routes>
           <Footer/>
