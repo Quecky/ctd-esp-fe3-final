@@ -1,0 +1,22 @@
+.box{
+    border: 2px solid var(--primary);
+    border-radius: 1rem;
+    min-width: 4rem;
+    padding: 5px 5px;
+}
+.circleDark{
+    width: 1rem;
+    aspect-ratio: 1;
+    background-color: var(--black);
+    border-radius: 50%;
+    transition: all ease-in-out 0.5s;
+    transform: translateX(2rem);
+}
+.circleLight{
+    width: 1rem;
+    aspect-ratio: 1;
+    background-color: var(--white);
+    border-radius: 50%;
+    border: 1px solid var(--primary);
+    transition: all ease-in-out 0.5s;
+}

@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React, { createContext, useReducer, useEffect, useMemo } from 'react';
 
-export const initialState = {theme: "", data: [], favorites: [] }
+export const initialState = {theme: "light", data: [], favorites: [] }
 
 const globalReducer = (state, action) => {
   switch (action.type) {

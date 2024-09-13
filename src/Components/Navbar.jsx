@@ -1,11 +1,12 @@
 
 import { Link } from 'react-router-dom'
 import { routes } from './utils/routes'
-
+import styles from "./navbar.module.css";
+import DarkModeBtn from './DarkModeBtn';
 
 //Este componente debera ser estilado como "dark" o "light" dependiendo del theme del Context
 
-const Navbar = ({toggleTheme}) => {
+const Navbar = ({state,toggleTheme}) => {
  
   return (
     <nav>
@@ -15,7 +16,7 @@ const Navbar = ({toggleTheme}) => {
    {/*  <Link to="/dentista/:id" ><h4>Detalle del dentista</h4></Link> */}
       <Link to={routes.contact}><h4>Contact</h4></Link>
       {/* Deberan implementar ademas la logica para cambiar de Theme con el button */}
-      <button onClick={toggleTheme}>Change theme</button>
+      <DarkModeBtn status={state} trigger={toggleTheme}/>
     </nav>
   )
 }
